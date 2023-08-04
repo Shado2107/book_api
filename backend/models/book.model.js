@@ -4,7 +4,8 @@ const bookSchema = mongoose.Schema(
     {
        title: {
             type: String,
-            require: true
+            require: true,
+            unique: true
        } ,
        author: {
             type: String,
