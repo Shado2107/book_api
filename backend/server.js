@@ -16,7 +16,8 @@ app.use(express.urlencoded({extended: false}));
 
 
 //les routes de l'api
-app.use("/book",require("./routes/book.routes"));
+app.use("/api/book",require("./routes/book.routes"));
+app.use("/api/auth",require("./routes/auth.routes"))
  
 
 //Lancer le serveur
