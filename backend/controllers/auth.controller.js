@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const userModel = require('../models/user.model');
 
+
 module.exports.login = async (req, res) => {
     try{
         const user = await userModel.findOne({
@@ -11,6 +12,14 @@ module.exports.login = async (req, res) => {
         const isCorrect = bcrypt.compareSync(req.body.password, user.password);
 
         if(!isCorrect) return res.status(400).jsoon({"success": false, "message": "mot de passe ou username  incorrect", err});
+
+
+        const token = jwt.sign(
+            {
+                id: user._id,
+                
+            }
+        )
 
         const {password, ...info} = user._doc
         res.status(200).json({info})
