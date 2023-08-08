@@ -20,8 +20,8 @@ app.use(express.urlencoded({extended: false}));
 
 
 //les routes de l'api
+app.use("/api/auth", authroutes);
 app.use("/api/book", bookroutes);
-app.use("/api/auth", authroutes)
  
 
 //Lancer le serveur

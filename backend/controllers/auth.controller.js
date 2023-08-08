@@ -18,11 +18,13 @@ module.exports.login = async (req, res) => {
             {
                 id: user._id,
                 
-            }
+            }, process.env.JWT_KEY
         )
 
         const {password, ...info} = user._doc
-        res.status(200).json({info})
+        res.cookie("access token", token, {
+             httOnly: true,
+        }).status(200).json({info})
 
     } catch(err){
         res.status(500).json({"success": false, "message": "une erreur s'est produite", err})
@@ -50,8 +52,11 @@ module.exports.register = async (req, res) => {
 }
 
 
-
 module.exports.logout = async (req, res) => {
  
+    res.clearCookie("accessToken", {
+        sameSite: "none",
+        secure: true,
+    }).status(200).send("user has been logged out")
     
 }
