@@ -4,6 +4,7 @@ const dotenv = require('dotenv').config();
 const authroutes = require("./routes/auth.routes");
 const bookroutes = require("./routes/book.routes")
 const cookieParser = require("cookie-parser")
+const envoyerMail =require ('./controllers/email.controller');
 
 const port = process.env.PORT || 5000;
 
@@ -22,6 +23,10 @@ app.use(express.urlencoded({extended: false}));
 //les routes de l'api
 app.use("/api/auth", authroutes);
 app.use("/api/book", bookroutes);
+
+
+//tester lea function envoie de mail
+envoyerMail()
  
 
 //Lancer le serveur
