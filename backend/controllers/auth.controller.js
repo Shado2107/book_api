@@ -9,6 +9,7 @@ module.exports.login = async (req, res) => {
             username: req.body.username
         })
         if(!user) return res.status(404).json({"success":false, "message": "utilisateur non trouvé"});
+        
         const isCorrect = bcrypt.compareSync(req.body.password, user.password);
 
         if(!isCorrect) return res.status(400).jsoon({"success": false, "message": "mot de passe ou username  incorrect", err});
@@ -49,7 +50,7 @@ module.exports.register = async (req, res) => {
     }
 
     
-}
+} 
 
 
 module.exports.logout = async (req, res) => {
